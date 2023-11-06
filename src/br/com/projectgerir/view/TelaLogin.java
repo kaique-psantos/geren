@@ -26,10 +26,12 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN - GERIR");
+        setBackground(new java.awt.Color(19, 7, 46));
 
-        jPanel1.setBackground(new java.awt.Color(28, 28, 57));
+        jPanel1.setBackground(new java.awt.Color(19, 7, 46));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnEsqueceuSenha.setBorder(null);
         btnEsqueceuSenha.setContentAreaFilled(false);
         btnEsqueceuSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEsqueceuSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -39,6 +41,7 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         jPanel1.add(btnEsqueceuSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 280, 20));
 
+        btnLogin.setBorder(null);
         btnLogin.setContentAreaFilled(false);
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -48,19 +51,19 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 380, 50));
 
-        txtUsuario1.setBackground(new java.awt.Color(28, 28, 57));
+        txtUsuario1.setBackground(new java.awt.Color(19, 7, 46));
         txtUsuario1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUsuario1.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario1.setBorder(null);
         jPanel1.add(txtUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 360, 30));
 
-        txtSenha.setBackground(new java.awt.Color(28, 28, 57));
+        txtSenha.setBackground(new java.awt.Color(19, 7, 46));
         txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtSenha.setForeground(new java.awt.Color(255, 255, 255));
         txtSenha.setBorder(null);
         jPanel1.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 360, 30));
 
-        imgTelaLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaLoginV4.png"))); // NOI18N
+        imgTelaLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaLogin.png"))); // NOI18N
         jPanel1.add(imgTelaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 1301, 704));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,7 +97,7 @@ public class TelaLogin extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
