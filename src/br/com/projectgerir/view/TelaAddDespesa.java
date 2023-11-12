@@ -4,6 +4,12 @@
  */
 package br.com.projectgerir.view;
 
+import br.com.projectgerir.view.TelaPrincipal;
+import br.com.projectgerir.view.popUp.TelaAddBanco;
+import br.com.projectgerir.view.popUp.TelaAddCategoria;
+import br.com.projectgerir.view.popUp.TelaAddFornecedor;
+import javax.swing.JFrame;
+
 /**
  *
  * @author kaiqu
@@ -15,6 +21,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
      */
     public TelaAddDespesa() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -38,6 +45,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         btnAddBanco = new javax.swing.JButton();
         btnAddCategoria = new javax.swing.JButton();
         btnAdicionarDespesa = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         imgTelaAddDespesa3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,6 +126,11 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         btnAddFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddFornecedor.setFocusPainted(false);
         btnAddFornecedor.setFocusable(false);
+        btnAddFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddFornecedorActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnAddFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 180, 40, 40));
 
         btnAddBanco.setBorder(null);
@@ -126,6 +139,11 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         btnAddBanco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddBanco.setFocusPainted(false);
         btnAddBanco.setFocusable(false);
+        btnAddBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBancoActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnAddBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 40, 40));
 
         btnAddCategoria.setBorder(null);
@@ -135,6 +153,11 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         btnAddCategoria.setDefaultCapable(false);
         btnAddCategoria.setFocusPainted(false);
         btnAddCategoria.setFocusable(false);
+        btnAddCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCategoriaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnAddCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 40, 40));
 
         btnAdicionarDespesa.setBorder(null);
@@ -144,6 +167,17 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         btnAdicionarDespesa.setFocusPainted(false);
         btnAdicionarDespesa.setFocusable(false);
         jPanel2.add(btnAdicionarDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 373, 230, 60));
+
+        btnVoltar.setBorder(null);
+        btnVoltar.setContentAreaFilled(false);
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVoltar.setFocusable(false);
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 160, 50));
 
         imgTelaAddDespesa3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         imgTelaAddDespesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/TelaDespesaV3.png"))); // NOI18N
@@ -203,6 +237,28 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDataPagamentoActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnAddBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBancoActionPerformed
+        TelaAddBanco telaAddBanco = new TelaAddBanco();
+        telaAddBanco.setVisible(true);
+    }//GEN-LAST:event_btnAddBancoActionPerformed
+
+    private void btnAddCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCategoriaActionPerformed
+        TelaAddCategoria telaAddCategoria = new TelaAddCategoria();
+        telaAddCategoria.setVisible(true);
+    }//GEN-LAST:event_btnAddCategoriaActionPerformed
+
+    private void btnAddFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFornecedorActionPerformed
+        TelaAddFornecedor telaAddFornecedor = new TelaAddFornecedor();
+        telaAddFornecedor.setVisible(true);
+    }//GEN-LAST:event_btnAddFornecedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +299,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     private javax.swing.JButton btnAddCategoria;
     private javax.swing.JButton btnAddFornecedor;
     private javax.swing.JButton btnAdicionarDespesa;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbBanco;
     private javax.swing.JComboBox<String> cbCategoria;
     private javax.swing.JComboBox<String> cbFornecedor;

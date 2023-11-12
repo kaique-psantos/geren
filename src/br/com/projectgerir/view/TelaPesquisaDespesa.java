@@ -4,6 +4,8 @@
  */
 package br.com.projectgerir.view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author kaiqu
@@ -15,6 +17,7 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
      */
     public TelaPesquisaDespesa() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -34,6 +37,9 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         btnPesquisar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         cbCategoria = new javax.swing.JComboBox<>();
+        btnExcluir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbDespesas = new javax.swing.JTable();
         imgTelaPesquisaDespesa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,18 +61,57 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         cbFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbFornecedor.setSelectedIndex(-1);
+        cbFornecedor.setFocusable(false);
         jPanel1.add(cbFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 168, 468, 39));
 
+        btnPesquisar.setBorder(null);
         btnPesquisar.setContentAreaFilled(false);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.setFocusable(false);
         jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 230, 130, 40));
 
+        btnVoltar.setBorder(null);
         btnVoltar.setContentAreaFilled(false);
-        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 633, -1, 40));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVoltar.setFocusable(false);
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 633, 50, 40));
 
         cbCategoria.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbCategoria.setSelectedIndex(-1);
+        cbCategoria.setFocusable(false);
         jPanel1.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 168, 172, 39));
+
+        btnExcluir.setBorder(null);
+        btnExcluir.setContentAreaFilled(false);
+        btnExcluir.setFocusable(false);
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1045, 630, 150, 40));
+
+        tbDespesas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbDespesas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Banco", "Categoria", "Fornecedor", "Descrição", "Data do Pagamento", "Valor"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbDespesas);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 1170, 340));
 
         imgTelaPesquisaDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPesquisaDespesaV2.png"))); // NOI18N
         jPanel1.add(imgTelaPesquisaDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -92,6 +137,13 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,6 +182,7 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbCategoria;
@@ -137,6 +190,8 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel imgTelaPesquisaDespesa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbDespesas;
     private javax.swing.JTextField txtDataFinal;
     private javax.swing.JTextField txtDataInicial;
     // End of variables declaration//GEN-END:variables

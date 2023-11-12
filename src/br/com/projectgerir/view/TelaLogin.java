@@ -1,5 +1,6 @@
 package br.com.projectgerir.view;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,6 +11,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public TelaLogin() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
 
@@ -34,6 +36,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnEsqueceuSenha.setBorder(null);
         btnEsqueceuSenha.setContentAreaFilled(false);
         btnEsqueceuSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEsqueceuSenha.setFocusable(false);
         btnEsqueceuSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEsqueceuSenhaActionPerformed(evt);
@@ -44,23 +47,26 @@ public class TelaLogin extends javax.swing.JFrame {
         btnLogin.setBorder(null);
         btnLogin.setContentAreaFilled(false);
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.setFocusable(false);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, 380, 50));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 380, 60));
 
         txtUsuario1.setBackground(new java.awt.Color(19, 7, 46));
         txtUsuario1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUsuario1.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario1.setBorder(null);
+        txtUsuario1.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel1.add(txtUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 360, 30));
 
         txtSenha.setBackground(new java.awt.Color(19, 7, 46));
         txtSenha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtSenha.setForeground(new java.awt.Color(255, 255, 255));
         txtSenha.setBorder(null);
+        txtSenha.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel1.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 360, 30));
 
         imgTelaLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaLogin.png"))); // NOI18N
@@ -82,11 +88,16 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        JOptionPane.showMessageDialog(null, "Teste teste teste de LOGIN");
+        JOptionPane.showMessageDialog(null, "COLOCAR VALIDAÇÃO DE LOGIN NESSA PORRA");
+        
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
+        
+        this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnEsqueceuSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsqueceuSenhaActionPerformed
-        JOptionPane.showMessageDialog(null, "Teste teste teste DE ESQUECEU SENHA");
+        JOptionPane.showMessageDialog(null, "esqueceu a porra da senha foi? te vira fio");
     }//GEN-LAST:event_btnEsqueceuSenhaActionPerformed
 
     public static void main(String args[]) {
@@ -97,7 +108,7 @@ public class TelaLogin extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("windows".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
