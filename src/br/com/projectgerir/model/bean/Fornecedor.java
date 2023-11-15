@@ -6,7 +6,7 @@ package br.com.projectgerir.model.bean;
  */
 public class Fornecedor {
     private int id;
-    private String nomeBanco;
+    private String nomeFornecedor;
 
     public int getId() {
         return id;
@@ -16,14 +16,16 @@ public class Fornecedor {
         this.id = id;
     }
 
-    public String getNomeBanco() {
-        return nomeBanco;
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
     }
 
-    public void setNomeBanco(String nomeBanco) {
-        this.nomeBanco = nomeBanco;
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
     }
 
- 
-    
+    @Override
+    public String toString() {
+        return getNomeFornecedor();
+    }
 }

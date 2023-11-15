@@ -1,6 +1,5 @@
 package br.com.projectgerir.model.bean;
 
-
 /**
  *
  * @author kaiqu
@@ -25,6 +24,8 @@ public class Categoria{
         this.nomeCategoria = nomeCategoria;
     }
 
-
-    
+    @Override
+    public String toString() {
+        return getNomeCategoria();
+    } 
 }

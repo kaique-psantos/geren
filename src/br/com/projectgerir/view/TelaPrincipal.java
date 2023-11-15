@@ -1,5 +1,8 @@
 package br.com.projectgerir.view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -69,7 +72,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnAddDespesaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAddDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 180, 20));
+        jPanel1.add(btnAddDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 180, 40));
 
         btnPesquisar.setBorder(null);
         btnPesquisar.setContentAreaFilled(false);
@@ -80,7 +83,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, 90, 20));
+        jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 90, 40));
 
         imgTelaLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPrincipal.png"))); // NOI18N
         jPanel1.add(imgTelaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 4, 1301, 720));
@@ -101,10 +104,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDespesaActionPerformed
-        TelaAddDespesa telaAddDespesa = new TelaAddDespesa();
-        telaAddDespesa.setVisible(true);
+        TelaAddDespesa telaAddDespesa;
+        try {
+            telaAddDespesa = new TelaAddDespesa();
+            telaAddDespesa.setVisible(true);
+            this.dispose(); 
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        this.dispose();     
+        
+            
     }//GEN-LAST:event_btnAddDespesaActionPerformed
 
     private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
@@ -144,7 +154,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

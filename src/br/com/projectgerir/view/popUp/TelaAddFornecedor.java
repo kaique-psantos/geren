@@ -4,6 +4,13 @@
  */
 package br.com.projectgerir.view.popUp;
 
+import br.com.projectgerir.model.DAO.FornecedorDAO;
+import br.com.projectgerir.model.bean.Fornecedor;
+import static br.com.projectgerir.view.TelaAddDespesa.readFornecedor;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kaiqu
@@ -42,12 +49,24 @@ public class TelaAddFornecedor extends javax.swing.JFrame {
 
         btnAddFornecedor.setContentAreaFilled(false);
         btnAddFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnAddFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 70, 30));
+        btnAddFornecedor.setFocusable(false);
+        btnAddFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddFornecedorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAddFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 70, 40));
 
         txtNomeFornecedor.setBackground(new java.awt.Color(19, 7, 46));
         txtNomeFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNomeFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeFornecedor.setBorder(null);
+        txtNomeFornecedor.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtNomeFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeFornecedorKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtNomeFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 113, 230, 24));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaAddFornecedor.png"))); // NOI18N
@@ -58,6 +77,31 @@ public class TelaAddFornecedor extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void adicionarFornecedor(){
+        Fornecedor f = new Fornecedor();
+        FornecedorDAO fDao = new FornecedorDAO();
+        
+        f.setNomeFornecedor(txtNomeFornecedor.getText());
+        
+        try{
+            fDao.create(f);
+            txtNomeFornecedor.setText("");
+            readFornecedor();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro so salvar o Fornecedor: "+ex);
+        }
+    }
+    
+    private void btnAddFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFornecedorActionPerformed
+        adicionarFornecedor();
+    }//GEN-LAST:event_btnAddFornecedorActionPerformed
+
+    private void txtNomeFornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeFornecedorKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            adicionarFornecedor();
+        }
+    }//GEN-LAST:event_txtNomeFornecedorKeyPressed
 
     /**
      * @param args the command line arguments

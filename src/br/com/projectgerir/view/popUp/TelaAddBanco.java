@@ -4,11 +4,21 @@
  */
 package br.com.projectgerir.view.popUp;
 
+import br.com.projectgerir.model.DAO.BancoDAO;
+import br.com.projectgerir.model.bean.Banco;
+import br.com.projectgerir.view.TelaAddDespesa;
+import static br.com.projectgerir.view.TelaAddDespesa.readBanco;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kaiqu
  */
-public class TelaAddBanco extends javax.swing.JFrame {
+public class TelaAddBanco extends javax.swing.JFrame{
 
     /**
      * Creates new form TelaCadastroUsuarioSDI
@@ -42,13 +52,24 @@ public class TelaAddBanco extends javax.swing.JFrame {
 
         btnAddBanco.setContentAreaFilled(false);
         btnAddBanco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnAddBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 70, 30));
+        btnAddBanco.setFocusable(false);
+        btnAddBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBancoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAddBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 70, 40));
 
         txtNomeBanco.setBackground(new java.awt.Color(19, 7, 46));
         txtNomeBanco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNomeBanco.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeBanco.setBorder(null);
         txtNomeBanco.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtNomeBanco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeBancoKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtNomeBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 113, 230, 24));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaAddBanco.png"))); // NOI18N
@@ -59,6 +80,31 @@ public class TelaAddBanco extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    //metodo modelo
+    private void adicionarBanco(){
+        Banco b = new Banco();
+        BancoDAO bDao = new BancoDAO();
+        
+        b.setNomeBanco(txtNomeBanco.getText());
+        
+        try{
+            bDao.create(b);
+            txtNomeBanco.setText("");
+            readBanco();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro so salvar o Banco: "+ex);
+        }
+    }
+    
+    private void btnAddBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBancoActionPerformed
+        adicionarBanco();
+    }//GEN-LAST:event_btnAddBancoActionPerformed
+
+    private void txtNomeBancoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeBancoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            adicionarBanco();
+        }
+    }//GEN-LAST:event_txtNomeBancoKeyPressed
 
     /**
      * @param args the command line arguments

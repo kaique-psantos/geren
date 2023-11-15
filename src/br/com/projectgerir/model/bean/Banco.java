@@ -24,6 +24,8 @@ public class Banco {
         this.nomeBanco = nomeBanco;
     }
 
-
-    
+    @Override
+    public String toString() {
+        return getNomeBanco();
+    } 
 }

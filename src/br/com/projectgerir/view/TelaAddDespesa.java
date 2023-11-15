@@ -4,12 +4,19 @@
  */
 package br.com.projectgerir.view;
 
-import br.com.projectgerir.view.TelaPrincipal;
+import br.com.projectgerir.model.DAO.BancoDAO;
+import br.com.projectgerir.model.DAO.CategoriaDAO;
+import br.com.projectgerir.model.DAO.FornecedorDAO;
+import br.com.projectgerir.model.bean.Banco;
+import br.com.projectgerir.model.bean.Categoria;
+import br.com.projectgerir.model.bean.Fornecedor;
 import br.com.projectgerir.view.popUp.TelaAddBanco;
 import br.com.projectgerir.view.popUp.TelaAddCategoria;
 import br.com.projectgerir.view.popUp.TelaAddFornecedor;
-import javax.swing.JFrame;
-
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
 /**
  *
  * @author kaiqu
@@ -18,12 +25,58 @@ public class TelaAddDespesa extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaAddDespesa
+     * @throws java.sql.SQLException
      */
-    public TelaAddDespesa() {
+    public TelaAddDespesa() throws SQLException {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        readBanco();
+        readCategoria();
+        readFornecedor();
+      
     }
-
+    
+    /**
+     *
+     */
+    public static void readBanco(){
+        cbBanco.removeAllItems();
+        BancoDAO bDao = new BancoDAO();
+        
+        try{
+            for(Banco b: bDao.read()  ){
+                cbBanco.addItem(b);   
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao consultar lista de Categorias: " + ex);
+        }
+    }
+    
+    public static void readCategoria(){
+        cbCategoria.removeAllItems();
+        CategoriaDAO cDao = new CategoriaDAO();
+        
+        try{
+            for(Categoria c: cDao.read()  ){
+                cbCategoria.addItem(c);   
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao consultar lista de Bancos: " + ex);
+        }
+    }
+    public static void readFornecedor(){
+        cbFornecedor.removeAllItems();
+        FornecedorDAO fDao = new FornecedorDAO();
+        
+        try{
+            for(Fornecedor f: fDao.read()  ){
+                cbFornecedor.addItem(f);   
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao consultar lista de Fornecedores: " + ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +112,6 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cbFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbFornecedor.setSelectedIndex(-1);
         cbFornecedor.setBorder(null);
         cbFornecedor.setFocusable(false);
@@ -71,7 +123,6 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel2.add(cbFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 490, 39));
 
         cbBanco.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbBanco.setSelectedIndex(-1);
         cbBanco.setBorder(null);
         cbBanco.setFocusable(false);
@@ -83,7 +134,6 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel2.add(cbBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 180, 200, 39));
 
         cbCategoria.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbCategoria.setSelectedIndex(-1);
         cbCategoria.setBorder(null);
         cbCategoria.setFocusable(false);
@@ -218,7 +268,8 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     }//GEN-LAST:event_cbFornecedorActionPerformed
 
     private void cbBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBancoActionPerformed
-        // TODO add your handling code here:
+
+    
     }//GEN-LAST:event_cbBancoActionPerformed
 
     private void cbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriaActionPerformed
@@ -247,6 +298,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     private void btnAddBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBancoActionPerformed
         TelaAddBanco telaAddBanco = new TelaAddBanco();
         telaAddBanco.setVisible(true);
+        
     }//GEN-LAST:event_btnAddBancoActionPerformed
 
     private void btnAddCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCategoriaActionPerformed
@@ -289,9 +341,15 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaAddDespesa().setVisible(true);
+                try {
+                    new TelaAddDespesa().setVisible(true);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "erro ao gerar Tela Add Despesa: " + ex);
+                    Logger.getLogger(TelaAddDespesa.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,9 +358,9 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     private javax.swing.JButton btnAddFornecedor;
     private javax.swing.JButton btnAdicionarDespesa;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cbBanco;
-    private javax.swing.JComboBox<String> cbCategoria;
-    private javax.swing.JComboBox<String> cbFornecedor;
+    public static javax.swing.JComboBox<Object> cbBanco;
+    public static javax.swing.JComboBox<Object> cbCategoria;
+    public static javax.swing.JComboBox<Object> cbFornecedor;
     private javax.swing.JLabel imgTelaAddDespesa3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;

@@ -4,6 +4,15 @@
  */
 package br.com.projectgerir.view.popUp;
 
+import br.com.projectgerir.model.DAO.CategoriaDAO;
+import br.com.projectgerir.model.bean.Categoria;
+import static br.com.projectgerir.view.TelaAddDespesa.readCategoria;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kaiqu
@@ -42,13 +51,24 @@ public class TelaAddCategoria extends javax.swing.JFrame {
 
         btnAddCategoria.setContentAreaFilled(false);
         btnAddCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnAddCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 70, 30));
+        btnAddCategoria.setFocusable(false);
+        btnAddCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCategoriaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAddCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 70, 40));
 
         txtNomeCategoria.setBackground(new java.awt.Color(19, 7, 46));
         txtNomeCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtNomeCategoria.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeCategoria.setBorder(null);
         txtNomeCategoria.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtNomeCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeCategoriaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtNomeCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 113, 230, 24));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaAddCategoria.png"))); // NOI18N
@@ -59,6 +79,31 @@ public class TelaAddCategoria extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    private void adicionarCategoria(){
+        Categoria c = new Categoria();
+        CategoriaDAO cDao = new CategoriaDAO();
+        
+        c.setNomeCategoria(txtNomeCategoria.getText());
+        
+        try{
+            cDao.create(c);
+            txtNomeCategoria.setText("");
+            readCategoria();
+   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro so salvar categoria: "+ex);
+        }
+    }
+    
+    private void btnAddCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCategoriaActionPerformed
+        adicionarCategoria();
+    }//GEN-LAST:event_btnAddCategoriaActionPerformed
+
+    private void txtNomeCategoriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeCategoriaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            adicionarCategoria();
+        }
+    }//GEN-LAST:event_txtNomeCategoriaKeyPressed
 
     /**
      * @param args the command line arguments
