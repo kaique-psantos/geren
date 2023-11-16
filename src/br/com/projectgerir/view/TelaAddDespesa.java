@@ -6,9 +6,11 @@ package br.com.projectgerir.view;
 
 import br.com.projectgerir.model.DAO.BancoDAO;
 import br.com.projectgerir.model.DAO.CategoriaDAO;
+import br.com.projectgerir.model.DAO.DespesaDAO;
 import br.com.projectgerir.model.DAO.FornecedorDAO;
 import br.com.projectgerir.model.bean.Banco;
 import br.com.projectgerir.model.bean.Categoria;
+import br.com.projectgerir.model.bean.Despesa;
 import br.com.projectgerir.model.bean.Fornecedor;
 import br.com.projectgerir.view.popUp.TelaAddBanco;
 import br.com.projectgerir.view.popUp.TelaAddCategoria;
@@ -17,6 +19,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /**
  *
  * @author kaiqu
@@ -93,12 +98,12 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         cbCategoria = new javax.swing.JComboBox<>();
         txtDescricao = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
-        txtDataPagamento = new javax.swing.JTextField();
         btnAddFornecedor = new javax.swing.JButton();
         btnAddBanco = new javax.swing.JButton();
         btnAddCategoria = new javax.swing.JButton();
         btnAdicionarDespesa = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        txtDataPagamento = new javax.swing.JFormattedTextField();
         imgTelaAddDespesa3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,9 +117,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cbFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbFornecedor.setSelectedIndex(-1);
         cbFornecedor.setBorder(null);
-        cbFornecedor.setFocusable(false);
         cbFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFornecedorActionPerformed(evt);
@@ -123,9 +126,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel2.add(cbFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 490, 39));
 
         cbBanco.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbBanco.setSelectedIndex(-1);
         cbBanco.setBorder(null);
-        cbBanco.setFocusable(false);
         cbBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbBancoActionPerformed(evt);
@@ -134,9 +135,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel2.add(cbBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 180, 200, 39));
 
         cbCategoria.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbCategoria.setSelectedIndex(-1);
         cbCategoria.setBorder(null);
-        cbCategoria.setFocusable(false);
         cbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCategoriaActionPerformed(evt);
@@ -161,14 +160,6 @@ public class TelaAddDespesa extends javax.swing.JFrame {
             }
         });
         jPanel2.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 140, 37));
-
-        txtDataPagamento.setBorder(null);
-        txtDataPagamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataPagamentoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, 170, 37));
 
         btnAddFornecedor.setBorder(null);
         btnAddFornecedor.setBorderPainted(false);
@@ -216,6 +207,11 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         btnAdicionarDespesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdicionarDespesa.setFocusPainted(false);
         btnAdicionarDespesa.setFocusable(false);
+        btnAdicionarDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarDespesaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnAdicionarDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 373, 230, 60));
 
         btnVoltar.setBorder(null);
@@ -228,6 +224,20 @@ public class TelaAddDespesa extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 160, 50));
+
+        txtDataPagamento.setBorder(null);
+        try {
+            txtDataPagamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDataPagamento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDataPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDataPagamentoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, 160, 37));
 
         imgTelaAddDespesa3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         imgTelaAddDespesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/TelaDespesaV3.png"))); // NOI18N
@@ -284,10 +294,6 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorActionPerformed
 
-    private void txtDataPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataPagamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataPagamentoActionPerformed
-
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         TelaPrincipal telaPrincipal = new TelaPrincipal();
         telaPrincipal.setVisible(true);
@@ -310,6 +316,55 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         TelaAddFornecedor telaAddFornecedor = new TelaAddFornecedor();
         telaAddFornecedor.setVisible(true);
     }//GEN-LAST:event_btnAddFornecedorActionPerformed
+
+    private void btnAdicionarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarDespesaActionPerformed
+        DateTimeFormatter formatoUsuario = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatoMySQL = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dataFormatadaMySQL = null;
+        try {
+            // Parse da string para um objeto LocalDate
+            LocalDate dataFormatada = LocalDate.parse(txtDataPagamento.getText(), formatoUsuario);
+
+            // Formatar novamente para o formato desejado (MySQL)
+             dataFormatadaMySQL= dataFormatada.format(formatoMySQL);
+
+            // Agora, a variável dataFormatadaMySQL contém a data no formato "yyyy-MM-dd"
+            //System.out.println("Data formatada para MySQL: " + dataFormatadaMySQL);
+        } catch (Exception e) {
+            // Tratar exceções, por exemplo, no caso de entrada inválida
+            System.err.println("Erro ao converter a data: " + e.getMessage());
+        }
+        
+        Banco banco = (Banco) cbBanco.getSelectedItem();
+        Categoria categoria = (Categoria) cbCategoria.getSelectedItem();
+        Fornecedor fornecedor = (Fornecedor) cbFornecedor.getSelectedItem();
+        Despesa despesa = new Despesa();
+        try{
+            despesa.setIdBanco(banco.getId());
+            despesa.setIdCategoria(categoria.getId());
+            despesa.setIdFornecedor(fornecedor.getId());
+            despesa.setDescricaoDespesa(txtDescricao.getText());
+            despesa.setValor(Double.parseDouble(txtValor.getText()));
+            despesa.setDataPagamento(dataFormatadaMySQL);
+            
+            DespesaDAO dDao = new DespesaDAO();
+            dDao.create(despesa);
+        }catch(java.sql.SQLIntegrityConstraintViolationException ex){
+            JOptionPane.showMessageDialog(null, "Digite uma data válida!");
+        }catch(java.lang.NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "O Valor da despesa não foi\ndigitado corretamente");
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar adicionar despesa " + ex);
+            
+        }
+        
+        txtDescricao.setText("");
+        txtValor.setText("");
+    }//GEN-LAST:event_btnAdicionarDespesaActionPerformed
+
+    private void txtDataPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataPagamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDataPagamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,8 +419,10 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel imgTelaAddDespesa3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField txtDataPagamento;
+    private javax.swing.JFormattedTextField txtDataPagamento;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
+
+    
 }

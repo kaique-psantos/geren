@@ -11,7 +11,7 @@ public class Despesa {
     private int idCategoria;
     private int idFornecedor;
     private String descricaoDespesa;
-    private Date dataPagamento;
+    private String dataPagamento;
     private double valor;
     private int idUsuario;
 
@@ -55,11 +55,11 @@ public class Despesa {
         this.descricaoDespesa = descricaoDespesa;
     }
 
-    public Date getDataPagamento() {
+    public String getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(Date dataPagamento) {
+    public void setDataPagamento(String dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 
@@ -77,6 +77,11 @@ public class Despesa {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Despesa{" + "id=" + id + ", idBanco=" + idBanco + ", idCategoria=" + idCategoria + ", idFornecedor=" + idFornecedor + ", descricaoDespesa=" + descricaoDespesa + ", dataPagamento=" + dataPagamento + ", valor=" + valor + ", idUsuario=" + idUsuario + '}';
     }
     
     
