@@ -4,6 +4,7 @@
  */
 package br.com.projectgerir.view;
 
+import static br.com.projectgerir.controller.ComboBox.*;
 import javax.swing.JFrame;
 
 /**
@@ -18,6 +19,9 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
     public TelaPesquisaDespesa() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        cbPesqCategoria = readCategoria(cbPesqCategoria);
+        cbPesqFornecedor = readFornecedor(cbPesqFornecedor);
     }
 
     /**
@@ -33,10 +37,10 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtDataInicial = new javax.swing.JTextField();
         txtDataFinal = new javax.swing.JTextField();
-        cbFornecedor = new javax.swing.JComboBox<>();
+        cbPesqFornecedor = new javax.swing.JComboBox<>();
         btnPesquisar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        cbCategoria = new javax.swing.JComboBox<>();
+        cbPesqCategoria = new javax.swing.JComboBox<>();
         btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDespesas = new javax.swing.JTable();
@@ -58,11 +62,10 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         txtDataFinal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jPanel1.add(txtDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 168, 161, 39));
 
-        cbFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbFornecedor.setSelectedIndex(-1);
-        cbFornecedor.setFocusable(false);
-        jPanel1.add(cbFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 168, 468, 39));
+        cbPesqFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbPesqFornecedor.setSelectedIndex(-1);
+        cbPesqFornecedor.setFocusable(false);
+        jPanel1.add(cbPesqFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 168, 468, 39));
 
         btnPesquisar.setBorder(null);
         btnPesquisar.setContentAreaFilled(false);
@@ -81,11 +84,10 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         });
         jPanel1.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 633, 50, 40));
 
-        cbCategoria.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        cbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbCategoria.setSelectedIndex(-1);
-        cbCategoria.setFocusable(false);
-        jPanel1.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 168, 172, 39));
+        cbPesqCategoria.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        cbPesqCategoria.setSelectedIndex(-1);
+        cbPesqCategoria.setFocusable(false);
+        jPanel1.add(cbPesqCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 168, 172, 39));
 
         btnExcluir.setBorder(null);
         btnExcluir.setContentAreaFilled(false);
@@ -113,7 +115,7 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 1170, 340));
 
-        imgTelaPesquisaDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPesquisaDespesaV2.png"))); // NOI18N
+        imgTelaPesquisaDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPesquisarDespesa.png"))); // NOI18N
         jPanel1.add(imgTelaPesquisaDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -121,9 +123,9 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 50, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,8 +187,8 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cbCategoria;
-    private javax.swing.JComboBox<String> cbFornecedor;
+    public static javax.swing.JComboBox<Object> cbPesqCategoria;
+    public static javax.swing.JComboBox<Object> cbPesqFornecedor;
     private javax.swing.JLabel imgTelaPesquisaDespesa;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

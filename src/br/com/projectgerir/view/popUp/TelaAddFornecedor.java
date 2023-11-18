@@ -4,9 +4,10 @@
  */
 package br.com.projectgerir.view.popUp;
 
+import static br.com.projectgerir.controller.ComboBox.readFornecedor;
 import br.com.projectgerir.model.DAO.FornecedorDAO;
 import br.com.projectgerir.model.bean.Fornecedor;
-import static br.com.projectgerir.view.TelaAddDespesa.readFornecedor;
+import static br.com.projectgerir.view.TelaAddDespesa.cbFornecedor;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -87,7 +88,7 @@ public class TelaAddFornecedor extends javax.swing.JFrame {
         try{
             fDao.create(f);
             txtNomeFornecedor.setText("");
-            readFornecedor();
+            cbFornecedor = readFornecedor(cbFornecedor);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro so salvar o Fornecedor: "+ex);
         }

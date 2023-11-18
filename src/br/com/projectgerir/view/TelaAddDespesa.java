@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.projectgerir.view;
 
-import br.com.projectgerir.model.DAO.BancoDAO;
-import br.com.projectgerir.model.DAO.CategoriaDAO;
+import static br.com.projectgerir.controller.ComboBox.readBanco;
+import static br.com.projectgerir.controller.ComboBox.readCategoria;
+import static br.com.projectgerir.controller.ComboBox.readFornecedor;
 import br.com.projectgerir.model.DAO.DespesaDAO;
-import br.com.projectgerir.model.DAO.FornecedorDAO;
 import br.com.projectgerir.model.bean.Banco;
 import br.com.projectgerir.model.bean.Categoria;
 import br.com.projectgerir.model.bean.Despesa;
@@ -36,52 +32,20 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        readBanco();
-        readCategoria();
-        readFornecedor();
+        cbBanco = readBanco(cbBanco);
+        cbCategoria = readCategoria(cbCategoria);
+        cbFornecedor =  readFornecedor(cbFornecedor);
       
     }
     
-    /**
-     *
-     */
-    public static void readBanco(){
-        cbBanco.removeAllItems();
-        BancoDAO bDao = new BancoDAO();
-        
-        try{
-            for(Banco b: bDao.read()  ){
-                cbBanco.addItem(b);   
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Erro ao consultar lista de Categorias: " + ex);
-        }
+
+    public static JComboBox<Object> getCbBanco(){
+        return cbBanco;
     }
-    
-    public static void readCategoria(){
-        cbCategoria.removeAllItems();
-        CategoriaDAO cDao = new CategoriaDAO();
-        
-        try{
-            for(Categoria c: cDao.read()  ){
-                cbCategoria.addItem(c);   
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Erro ao consultar lista de Bancos: " + ex);
-        }
+    public static void setCbBanco(JComboBox<Object> cbBanco) {
+        TelaAddDespesa.cbBanco = cbBanco;
     }
-    public static void readFornecedor(){
-        cbFornecedor.removeAllItems();
-        FornecedorDAO fDao = new FornecedorDAO();
-        
-        try{
-            for(Fornecedor f: fDao.read()  ){
-                cbFornecedor.addItem(f);   
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Erro ao consultar lista de Fornecedores: " + ex);
-        }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -4,14 +4,17 @@
  */
 package br.com.projectgerir.view.popUp;
 
+import static br.com.projectgerir.controller.ComboBox.readBanco;
 import br.com.projectgerir.model.DAO.BancoDAO;
 import br.com.projectgerir.model.bean.Banco;
 import br.com.projectgerir.view.TelaAddDespesa;
-import static br.com.projectgerir.view.TelaAddDespesa.readBanco;
+
+import static br.com.projectgerir.view.TelaAddDespesa.cbBanco;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -90,7 +93,7 @@ public class TelaAddBanco extends javax.swing.JFrame{
         try{
             bDao.create(b);
             txtNomeBanco.setText("");
-            readBanco();
+            cbBanco = readBanco(cbBanco);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro so salvar o Banco: "+ex);
         }

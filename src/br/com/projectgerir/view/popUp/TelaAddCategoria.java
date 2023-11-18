@@ -4,13 +4,13 @@
  */
 package br.com.projectgerir.view.popUp;
 
+import static br.com.projectgerir.controller.ComboBox.readCategoria;
 import br.com.projectgerir.model.DAO.CategoriaDAO;
 import br.com.projectgerir.model.bean.Categoria;
-import static br.com.projectgerir.view.TelaAddDespesa.readCategoria;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import static br.com.projectgerir.view.TelaAddDespesa.cbCategoria;
 import javax.swing.JOptionPane;
 
 /**
@@ -88,8 +88,7 @@ public class TelaAddCategoria extends javax.swing.JFrame {
         try{
             cDao.create(c);
             txtNomeCategoria.setText("");
-            readCategoria();
-   
+            cbCategoria = readCategoria(cbCategoria);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro so salvar categoria: "+ex);
         }
