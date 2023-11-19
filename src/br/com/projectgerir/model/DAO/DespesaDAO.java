@@ -1,16 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.projectgerir.model.DAO;
 
 import br.com.projectgerir.connection.ConnectionFactory;
-import br.com.projectgerir.model.bean.Banco;
 import br.com.projectgerir.model.bean.Despesa;
+import br.com.projectgerir.model.bean.DespesaPesquisaModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,5 +40,177 @@ public class DespesaDAO {
         }finally{
             ConnectionFactory.closeConnection(con, stmt);
         }      
+    }
+    
+    public List<DespesaPesquisaModel> readDespesaAll(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DespesaPesquisaModel> despesas = new ArrayList<>();
+        
+        try{
+           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR");
+           rs = stmt.executeQuery();
+           
+           while(rs.next()){
+                DespesaPesquisaModel despesa = new DespesaPesquisaModel();
+                
+                despesa.setId(rs.getInt("idDESPESA"));
+                despesa.setNomeBanco(rs.getString("NOME_BANCO"));
+                despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
+                despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
+                despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
+                despesa.setDataPagamento(rs.getString("DATA"));
+                despesa.setValor(rs.getDouble("VALOR"));
+                
+                despesas.add(despesa);
+           }   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao relizar Query: " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return despesas;
+    }
+    
+    public List<DespesaPesquisaModel> readDespesaData(String dataInicial, String dataFinal){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DespesaPesquisaModel> despesas = new ArrayList<>();
+        
+        try{
+           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR WHERE d.DATA BETWEEN ? AND ? ORDER BY DATA");
+           stmt.setString(1, dataInicial);
+           stmt.setString(2, dataFinal);
+           rs = stmt.executeQuery();
+           
+           while(rs.next()){
+                DespesaPesquisaModel despesa = new DespesaPesquisaModel();
+                
+                despesa.setId(rs.getInt("idDESPESA"));
+                despesa.setNomeBanco(rs.getString("NOME_BANCO"));
+                despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
+                despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
+                despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
+                despesa.setDataPagamento(rs.getString("DATA"));
+                despesa.setValor(rs.getDouble("VALOR"));
+                
+                despesas.add(despesa);
+           }   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao relizar Query: " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return despesas;
+    }
+    
+    public List<DespesaPesquisaModel> readDespesaCategoria(int idCategoria, String dataInicial, String dataFinal){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DespesaPesquisaModel> despesas = new ArrayList<>();
+        
+        try{
+           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR WHERE d.idCATEGORIA = ? AND d.DATA BETWEEN ? AND ? ORDER BY DATA");
+           stmt.setInt(1, idCategoria);
+           stmt.setString(2, dataInicial);
+           stmt.setString(3, dataFinal);
+           rs = stmt.executeQuery();
+           
+           while(rs.next()){
+                DespesaPesquisaModel despesa = new DespesaPesquisaModel();
+                
+                despesa.setId(rs.getInt("idDESPESA"));
+                despesa.setNomeBanco(rs.getString("NOME_BANCO"));
+                despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
+                despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
+                despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
+                despesa.setDataPagamento(rs.getString("DATA"));
+                despesa.setValor(rs.getDouble("VALOR"));
+                
+                despesas.add(despesa);
+           }   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao relizar Query: " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return despesas;
+    }
+
+    public List<DespesaPesquisaModel> readDespesaFornecedor(int idFornecedor, String dataInicial, String dataFinal){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DespesaPesquisaModel> despesas = new ArrayList<>();
+        
+        try{
+           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR WHERE d.idFORNECEDOR = ? AND d.DATA BETWEEN ? AND ? ORDER BY DATA");
+           stmt.setInt(1, idFornecedor);
+           stmt.setString(2, dataInicial);
+           stmt.setString(3, dataFinal);
+           rs = stmt.executeQuery();
+           
+           while(rs.next()){
+                DespesaPesquisaModel despesa = new DespesaPesquisaModel();
+                
+                despesa.setId(rs.getInt("idDESPESA"));
+                despesa.setNomeBanco(rs.getString("NOME_BANCO"));
+                despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
+                despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
+                despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
+                despesa.setDataPagamento(rs.getString("DATA"));
+                despesa.setValor(rs.getDouble("VALOR"));
+                
+                despesas.add(despesa);
+           }   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao relizar Query: " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return despesas;
+    }
+     
+    public List<DespesaPesquisaModel> readDespesa2Filtros(int idCategoria, int idFornecedor, String dataInicial, String dataFinal){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DespesaPesquisaModel> despesas = new ArrayList<>();
+        
+        try{
+           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR WHERE d.idCATEGORIA = ? AND d.idFORNECEDOR = ? AND d.DATA BETWEEN ? AND ? ORDER BY DATA");
+           stmt.setInt(1, idCategoria);
+           stmt.setInt(2, idFornecedor);
+           stmt.setString(3, dataInicial);
+           stmt.setString(4, dataFinal);
+           rs = stmt.executeQuery();
+           
+           while(rs.next()){
+                DespesaPesquisaModel despesa = new DespesaPesquisaModel();
+                
+                despesa.setId(rs.getInt("idDESPESA"));
+                despesa.setNomeBanco(rs.getString("NOME_BANCO"));
+                despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
+                despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
+                despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
+                despesa.setDataPagamento(rs.getString("DATA"));
+                despesa.setValor(rs.getDouble("VALOR"));
+                
+                despesas.add(despesa);
+           }   
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao relizar Query: " + ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return despesas;
     }
 }

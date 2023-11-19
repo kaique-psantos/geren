@@ -1,5 +1,6 @@
 package br.com.projectgerir.view;
 
+import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -12,6 +13,8 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        inserirIcon(this);
     }
 
 

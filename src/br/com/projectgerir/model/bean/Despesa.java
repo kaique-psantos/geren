@@ -1,6 +1,5 @@
 package br.com.projectgerir.model.bean;
 
-import java.sql.Date;
 /**
  *
  * @author kaiqu

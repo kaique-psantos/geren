@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.projectgerir.view.popUp;
 
 import static br.com.projectgerir.controller.ComboBox.readFornecedor;
 import br.com.projectgerir.model.DAO.FornecedorDAO;
 import br.com.projectgerir.model.bean.Fornecedor;
+import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import static br.com.projectgerir.view.TelaAddDespesa.cbFornecedor;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -23,6 +20,7 @@ public class TelaAddFornecedor extends javax.swing.JFrame {
      */
     public TelaAddFornecedor() {
         initComponents();
+        inserirIcon(this);
     }
 
     /**

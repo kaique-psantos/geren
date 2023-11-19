@@ -1,10 +1,10 @@
 package br.com.projectgerir.view;
 
+import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +15,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        inserirIcon(this);
     }
 
 

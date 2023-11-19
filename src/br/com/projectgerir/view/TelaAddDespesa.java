@@ -1,23 +1,24 @@
 package br.com.projectgerir.view;
 
-import static br.com.projectgerir.controller.ComboBox.readBanco;
-import static br.com.projectgerir.controller.ComboBox.readCategoria;
-import static br.com.projectgerir.controller.ComboBox.readFornecedor;
+
+import br.com.projectgerir.view.popUp.TelaAddBanco;
+import br.com.projectgerir.view.popUp.TelaAddCategoria;
+import br.com.projectgerir.view.popUp.TelaAddFornecedor;
 import br.com.projectgerir.model.DAO.DespesaDAO;
 import br.com.projectgerir.model.bean.Banco;
 import br.com.projectgerir.model.bean.Categoria;
 import br.com.projectgerir.model.bean.Despesa;
 import br.com.projectgerir.model.bean.Fornecedor;
-import br.com.projectgerir.view.popUp.TelaAddBanco;
-import br.com.projectgerir.view.popUp.TelaAddCategoria;
-import br.com.projectgerir.view.popUp.TelaAddFornecedor;
+import static br.com.projectgerir.controller.ComboBox.readBanco;
+import static br.com.projectgerir.controller.ComboBox.readCategoria;
+import static br.com.projectgerir.controller.ComboBox.readFornecedor;
+import static br.com.projectgerir.util.Utilitarios.converterData;
+import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 /**
  *
  * @author kaiqu
@@ -31,6 +32,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     public TelaAddDespesa() throws SQLException {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        inserirIcon(this);
         
         cbBanco = readBanco(cbBanco);
         cbCategoria = readCategoria(cbCategoria);
@@ -282,22 +284,8 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddFornecedorActionPerformed
 
     private void btnAdicionarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarDespesaActionPerformed
-        DateTimeFormatter formatoUsuario = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        DateTimeFormatter formatoMySQL = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String dataFormatadaMySQL = null;
-        try {
-            // Parse da string para um objeto LocalDate
-            LocalDate dataFormatada = LocalDate.parse(txtDataPagamento.getText(), formatoUsuario);
-
-            // Formatar novamente para o formato desejado (MySQL)
-             dataFormatadaMySQL= dataFormatada.format(formatoMySQL);
-
-            // Agora, a variável dataFormatadaMySQL contém a data no formato "yyyy-MM-dd"
-            //System.out.println("Data formatada para MySQL: " + dataFormatadaMySQL);
-        } catch (Exception e) {
-            // Tratar exceções, por exemplo, no caso de entrada inválida
-            System.err.println("Erro ao converter a data: " + e.getMessage());
-        }
+        
+        String dataFormatadaMySQL = converterData(txtDataPagamento);
         
         Banco banco = (Banco) cbBanco.getSelectedItem();
         Categoria categoria = (Categoria) cbCategoria.getSelectedItem();

@@ -1,20 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.projectgerir.view.popUp;
 
+import static br.com.projectgerir.view.TelaAddDespesa.cbBanco;
 import static br.com.projectgerir.controller.ComboBox.readBanco;
 import br.com.projectgerir.model.DAO.BancoDAO;
 import br.com.projectgerir.model.bean.Banco;
-import br.com.projectgerir.view.TelaAddDespesa;
-
-import static br.com.projectgerir.view.TelaAddDespesa.cbBanco;
+import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +20,7 @@ public class TelaAddBanco extends javax.swing.JFrame{
      */
     public TelaAddBanco() {
         initComponents();
+        inserirIcon(this);
     }
 
     /**
