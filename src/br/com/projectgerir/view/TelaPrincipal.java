@@ -28,7 +28,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         btnAddDespesa = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
-        imgTelaLogin = new javax.swing.JLabel();
+        imgTelaPrincipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GERIR - PRINCIPAL");
@@ -86,8 +86,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 90, 40));
 
-        imgTelaLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPrincipal.png"))); // NOI18N
-        jPanel1.add(imgTelaLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 4, 1301, 720));
+        imgTelaPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPrincipalV2.png"))); // NOI18N
+        jPanel1.add(imgTelaPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 4, 1301, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,7 +184,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnUsuario;
-    private javax.swing.JLabel imgTelaLogin;
+    private javax.swing.JLabel imgTelaPrincipal;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

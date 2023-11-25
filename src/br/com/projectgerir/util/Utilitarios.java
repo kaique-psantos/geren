@@ -1,9 +1,12 @@
 package br.com.projectgerir.util;
 
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -34,7 +37,32 @@ public class Utilitarios {
         return novaData;   
     }
     
+    public static String converterDataDoMySQL(String DataMySQL){
+        SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd");
+        String dataFormatada = "";
+        try {
+            // Convertendo a string para um objeto Date
+            Date data = formatoOriginal.parse(DataMySQL);
+
+            // Formatando a data para o novo formato (dd-MM-yyyy)
+            SimpleDateFormat formatoNovo = new SimpleDateFormat("dd-MM-yyyy");
+            dataFormatada = formatoNovo.format(data);
+
+
+        } catch (ParseException ex) {
+            System.err.println("Erro ao converter a data: " + ex.getMessage());
+        }
+        return dataFormatada;
+    }
+    
+    
     public static void inserirIcon(JFrame tela){
         tela.setIconImage(Toolkit.getDefaultToolkit().getImage("src/br/com/projectgerir/images/iconLogoV2.png"));
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(converterDataDoMySQL("2023-11-22"));
+        
+       
     }
 }

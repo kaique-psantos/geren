@@ -3,6 +3,8 @@ package br.com.projectgerir.model.DAO;
 import br.com.projectgerir.connection.ConnectionFactory;
 import br.com.projectgerir.model.bean.Despesa;
 import br.com.projectgerir.model.bean.DespesaPesquisaModel;
+import static br.com.projectgerir.util.Utilitarios.converterDataDoMySQL;
+import br.com.projectgerir.view.TelaPesquisaDespesa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,9 +49,9 @@ public class DespesaDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<DespesaPesquisaModel> despesas = new ArrayList<>();
-        
+         
         try{
-           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR");
+           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, '%d/%m/%Y', d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR");
            rs = stmt.executeQuery();
            
            while(rs.next()){
@@ -60,7 +62,9 @@ public class DespesaDAO {
                 despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
                 despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
                 despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
-                despesa.setDataPagamento(rs.getString("DATA"));
+                    String dataFormatoMySQL = rs.getString("DATA");
+                    String dataPagamento = converterDataDoMySQL(dataFormatoMySQL);
+                despesa.setDataPagamento(dataPagamento);
                 despesa.setValor(rs.getDouble("VALOR"));
                 
                 despesas.add(despesa);
@@ -70,6 +74,7 @@ public class DespesaDAO {
         }finally{
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
+        TelaPesquisaDespesa.txtTotalRegistros.setText(Integer.toString(despesas.size()));
         
         return despesas;
     }
@@ -81,7 +86,7 @@ public class DespesaDAO {
         List<DespesaPesquisaModel> despesas = new ArrayList<>();
         
         try{
-           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR WHERE d.DATA BETWEEN ? AND ? ORDER BY DATA");
+           stmt = con.prepareStatement("SELECT d.idDESPESA, d.DESCRICAO, d.DATA, d.VALOR, b.NOME_BANCO, c.NOME_CATEGORIA, d.idCATEGORIA, f.NOME_FORNECEDOR, d.idFORNECEDOR, d.idUSUARIO FROM despesa AS d JOIN banco AS b ON d.idBANCO = b.idBANCO JOIN categoria AS c ON d.idCATEGORIA = c.idCATEGORIA JOIN fornecedor AS f ON d.idFORNECEDOR = f.idFORNECEDOR WHERE d.DATA BETWEEN ? AND ? ORDER BY d.DATA");
            stmt.setString(1, dataInicial);
            stmt.setString(2, dataFinal);
            rs = stmt.executeQuery();
@@ -94,7 +99,9 @@ public class DespesaDAO {
                 despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
                 despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
                 despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
-                despesa.setDataPagamento(rs.getString("DATA"));
+                    String dataFormatoMySQL = rs.getString("DATA");
+                    String dataPagamento = converterDataDoMySQL(dataFormatoMySQL);
+                despesa.setDataPagamento(dataPagamento);
                 despesa.setValor(rs.getDouble("VALOR"));
                 
                 despesas.add(despesa);
@@ -104,7 +111,7 @@ public class DespesaDAO {
         }finally{
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
-        
+        TelaPesquisaDespesa.txtTotalRegistros.setText(Integer.toString(despesas.size()));
         return despesas;
     }
     
@@ -129,7 +136,9 @@ public class DespesaDAO {
                 despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
                 despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
                 despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
-                despesa.setDataPagamento(rs.getString("DATA"));
+                    String dataFormatoMySQL = rs.getString("DATA");
+                    String dataPagamento = converterDataDoMySQL(dataFormatoMySQL);
+                despesa.setDataPagamento(dataPagamento);
                 despesa.setValor(rs.getDouble("VALOR"));
                 
                 despesas.add(despesa);
@@ -140,6 +149,7 @@ public class DespesaDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         
+        TelaPesquisaDespesa.txtTotalRegistros.setText(Integer.toString(despesas.size()));
         return despesas;
     }
 
@@ -164,7 +174,9 @@ public class DespesaDAO {
                 despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
                 despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
                 despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
-                despesa.setDataPagamento(rs.getString("DATA"));
+                    String dataFormatoMySQL = rs.getString("DATA");
+                    String dataPagamento = converterDataDoMySQL(dataFormatoMySQL);
+                despesa.setDataPagamento(dataPagamento);
                 despesa.setValor(rs.getDouble("VALOR"));
                 
                 despesas.add(despesa);
@@ -175,6 +187,7 @@ public class DespesaDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         
+        TelaPesquisaDespesa.txtTotalRegistros.setText(Integer.toString(despesas.size()));
         return despesas;
     }
      
@@ -200,7 +213,9 @@ public class DespesaDAO {
                 despesa.setNomeCategoria(rs.getString("NOME_CATEGORIA"));
                 despesa.setNomeFornecedor(rs.getString("NOME_FORNECEDOR"));
                 despesa.setDescricaoDespesa(rs.getString("DESCRICAO"));
-                despesa.setDataPagamento(rs.getString("DATA"));
+                    String dataFormatoMySQL = rs.getString("DATA");
+                    String dataPagamento = converterDataDoMySQL(dataFormatoMySQL);
+                despesa.setDataPagamento(dataPagamento);
                 despesa.setValor(rs.getDouble("VALOR"));
                 
                 despesas.add(despesa);
@@ -211,6 +226,25 @@ public class DespesaDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         
+        TelaPesquisaDespesa.txtTotalRegistros.setText(Integer.toString(despesas.size()));
         return despesas;
+    }
+
+     public void delete(DespesaPesquisaModel despesa) throws SQLException{
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;    
+        
+        try{ 
+            stmt = con.prepareStatement("DELETE FROM despesa WHERE idDESPESA = ?");
+            stmt.setInt(1, despesa.getId());
+
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso");
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao Excluir: " + ex);
+            System.out.println(ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }      
     }
 }

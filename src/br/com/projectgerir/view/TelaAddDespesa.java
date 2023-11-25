@@ -15,6 +15,8 @@ import static br.com.projectgerir.controller.ComboBox.readFornecedor;
 import static br.com.projectgerir.util.Utilitarios.converterData;
 import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -33,6 +35,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         inserirIcon(this);
+     
         
         cbBanco = readBanco(cbBanco);
         cbCategoria = readCategoria(cbCategoria);
@@ -284,23 +287,29 @@ public class TelaAddDespesa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddFornecedorActionPerformed
 
     private void btnAdicionarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarDespesaActionPerformed
-        
         String dataFormatadaMySQL = converterData(txtDataPagamento);
-        
         Banco banco = (Banco) cbBanco.getSelectedItem();
         Categoria categoria = (Categoria) cbCategoria.getSelectedItem();
         Fornecedor fornecedor = (Fornecedor) cbFornecedor.getSelectedItem();
         Despesa despesa = new Despesa();
-        try{
+        String valorString = txtValor.getText();
+        DecimalFormat formatoBr = new DecimalFormat("#,##0.00");
+        
+        try {
+            double valorFormatado = formatoBr.parse(valorString).doubleValue();
+            
             despesa.setIdBanco(banco.getId());
             despesa.setIdCategoria(categoria.getId());
             despesa.setIdFornecedor(fornecedor.getId());
             despesa.setDescricaoDespesa(txtDescricao.getText());
-            despesa.setValor(Double.parseDouble(txtValor.getText()));
+            despesa.setValor(valorFormatado);
             despesa.setDataPagamento(dataFormatadaMySQL);
             
             DespesaDAO dDao = new DespesaDAO();
             dDao.create(despesa);
+        }catch (ParseException ex) {
+             JOptionPane.showMessageDialog(null, "Digite um valor válido!");
+            Logger.getLogger(TelaAddDespesa.class.getName()).log(Level.SEVERE, null, ex);
         }catch(java.sql.SQLIntegrityConstraintViolationException ex){
             JOptionPane.showMessageDialog(null, "Digite uma data válida!");
         }catch(java.lang.NumberFormatException ex){

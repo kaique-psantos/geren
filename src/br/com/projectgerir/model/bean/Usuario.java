@@ -1,37 +1,38 @@
 package br.com.projectgerir.model.bean;
 
-/**
- *
- * @author kaiqu
- */
 public class Usuario {
-    private int id;
-    private String usuario;
-    private String senha;
+	private int id_usuario;
+	private String nome_usuario, user, senha;
 
-    public int getId() {
-        return id;
-    }
+	public int getId_usuario() {
+		return id_usuario;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public String getNome_usuario() {
+		return nome_usuario;
+	}
 
-    public String getUsuario() {
-        return usuario;
-    }
+	public String getUser() {
+		return user;
+	}
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    
+	public void setNome_usuario(String nome_usuario) {
+		this.nome_usuario = nome_usuario;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 }

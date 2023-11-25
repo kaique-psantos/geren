@@ -1,9 +1,12 @@
 package br.com.projectgerir.view;
 
+import br.com.projectgerir.model.DAO.UsuarioDAO;
+import br.com.projectgerir.model.bean.Usuario;
 import static br.com.projectgerir.util.Utilitarios.inserirIcon;
+import br.com.projectgerir.view.popUp.TelaEsqueceuSenha;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author kaiqu
@@ -63,6 +66,11 @@ public class TelaLogin extends javax.swing.JFrame {
         txtUsuario1.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario1.setBorder(null);
         txtUsuario1.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtUsuario1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuario1KeyPressed(evt);
+            }
+        });
         jPanel1.add(txtUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 360, 30));
 
         txtSenha.setBackground(new java.awt.Color(19, 7, 46));
@@ -70,6 +78,11 @@ public class TelaLogin extends javax.swing.JFrame {
         txtSenha.setForeground(new java.awt.Color(255, 255, 255));
         txtSenha.setBorder(null);
         txtSenha.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 360, 30));
 
         imgTelaLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaLogin.png"))); // NOI18N
@@ -91,17 +104,63 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        JOptionPane.showMessageDialog(null, "COLOCAR VALIDAÇÃO DE LOGIN NESSA PORRA");
+      
+            String nome_usuario, senha_usuario;
+            nome_usuario = txtUsuario1.getText();
+            senha_usuario = new String(txtSenha.getPassword());
+
+            Usuario usuario = new Usuario();
+            usuario.setUser(nome_usuario);
+            usuario.setSenha(senha_usuario);
+            
+            UsuarioDAO usuarioD = new UsuarioDAO();
+            boolean autenticacaoUsuario = usuarioD.autenticacaoUsuario(usuario);
+            
+            if(autenticacaoUsuario){
+                TelaPrincipal p = new TelaPrincipal();
+                p.setVisible(true);
+                this.dispose();
+            }
+            else{ 
+              JOptionPane.showMessageDialog(null, "Credenciais inválidos. Verifique seu usuário ou senha.", "Login", JOptionPane.ERROR_MESSAGE);
+            }
         
-        TelaPrincipal telaPrincipal = new TelaPrincipal();
-        telaPrincipal.setVisible(true);
-        
-        this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnEsqueceuSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsqueceuSenhaActionPerformed
-        JOptionPane.showMessageDialog(null, "esqueceu a porra da senha foi? te vira fio");
+        TelaEsqueceuSenha telaEsqueceuSenha = new TelaEsqueceuSenha(this, rootPaneCheckingEnabled);
+        telaEsqueceuSenha.setVisible(true);
     }//GEN-LAST:event_btnEsqueceuSenhaActionPerformed
+
+    private void txtUsuario1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuario1KeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           //PULAR PARA O CAMPO SENHA
+        }
+    }//GEN-LAST:event_txtUsuario1KeyPressed
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           String nome_usuario, senha_usuario;
+            nome_usuario = txtUsuario1.getText();
+            senha_usuario = new String(txtSenha.getPassword());
+
+            Usuario usuario = new Usuario();
+            usuario.setUser(nome_usuario);
+            usuario.setSenha(senha_usuario);
+            
+            UsuarioDAO usuarioD = new UsuarioDAO();
+            boolean autenticacaoUsuario = usuarioD.autenticacaoUsuario(usuario);
+            
+            if(autenticacaoUsuario){
+                TelaPrincipal p = new TelaPrincipal();
+                p.setVisible(true);
+                this.dispose();
+            }
+            else{ 
+              JOptionPane.showMessageDialog(null, "Credenciais inválidos. Verifique seu usuário ou senha.", "Login", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -3,6 +3,7 @@ package br.com.projectgerir.controller;
 import br.com.projectgerir.model.DAO.DespesaDAO;
 import br.com.projectgerir.model.bean.DespesaPesquisaModel;
 import static br.com.projectgerir.view.TelaPesquisaDespesa.tableDespesas;
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -15,13 +16,17 @@ public class PreencherTableDespesa {
         DespesaDAO dDao = new DespesaDAO();
         
         for(DespesaPesquisaModel d : dDao.readDespesa2Filtros(idCategoria, idFornecedor,dataInicial, dataFinal)){
+            DecimalFormat formatoBr = new DecimalFormat("#,##0.00");
+            String valorFormatoBr = formatoBr.format(d.getValor());
+            
             modelo.addRow(new Object[]{
+                d.getId(),
                 d.getNomeBanco(),
                 d.getNomeCategoria(),
                 d.getNomeFornecedor(),
                 d.getDescricaoDespesa(),
                 d.getDataPagamento(),
-                d.getValor() 
+                valorFormatoBr 
             });
         }   
     }
@@ -32,13 +37,17 @@ public class PreencherTableDespesa {
         DespesaDAO dDao = new DespesaDAO();
         
         for(DespesaPesquisaModel d : dDao.readDespesaCategoria(idCategoria,dataInicial, dataFinal)){
+            DecimalFormat formatoBr = new DecimalFormat("#,##0.00");
+            String valorFormatoBr = formatoBr.format(d.getValor());
+            
             modelo.addRow(new Object[]{
+                d.getId(),
                 d.getNomeBanco(),
                 d.getNomeCategoria(),
                 d.getNomeFornecedor(),
                 d.getDescricaoDespesa(),
                 d.getDataPagamento(),
-                d.getValor() 
+                valorFormatoBr 
             });
         }   
     }
@@ -49,13 +58,17 @@ public class PreencherTableDespesa {
         DespesaDAO dDao = new DespesaDAO();
         
         for(DespesaPesquisaModel d : dDao.readDespesaFornecedor(idFornecedor,dataInicial, dataFinal)){
+            DecimalFormat formatoBr = new DecimalFormat("#,##0.00");
+            String valorFormatoBr = formatoBr.format(d.getValor());
+            
             modelo.addRow(new Object[]{
+                d.getId(),
                 d.getNomeBanco(),
                 d.getNomeCategoria(),
                 d.getNomeFornecedor(),
                 d.getDescricaoDespesa(),
                 d.getDataPagamento(),
-                d.getValor() 
+                valorFormatoBr 
             });
         }   
     }
@@ -66,13 +79,16 @@ public class PreencherTableDespesa {
         DespesaDAO dDao = new DespesaDAO();
         
         for(DespesaPesquisaModel d : dDao.readDespesaData(dataInicial, dataFinal)){
+            DecimalFormat formatoBr = new DecimalFormat("#,##0.00");
+            String valorFormatoBr = formatoBr.format(d.getValor());
             modelo.addRow(new Object[]{
+                d.getId(),
                 d.getNomeBanco(),
                 d.getNomeCategoria(),
                 d.getNomeFornecedor(),
                 d.getDescricaoDespesa(),
                 d.getDataPagamento(),
-                d.getValor() 
+                valorFormatoBr 
             });
         }   
     }
