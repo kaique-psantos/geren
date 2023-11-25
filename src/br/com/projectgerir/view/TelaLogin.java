@@ -120,6 +120,8 @@ public class TelaLogin extends javax.swing.JFrame {
                 TelaPrincipal p = new TelaPrincipal();
                 p.setVisible(true);
                 this.dispose();
+                
+                System.out.println();
             }
             else{ 
               JOptionPane.showMessageDialog(null, "Credenciais inválidos. Verifique seu usuário ou senha.", "Login", JOptionPane.ERROR_MESSAGE);
@@ -134,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void txtUsuario1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuario1KeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-           //PULAR PARA O CAMPO SENHA
+           txtSenha.requestFocus();
         }
     }//GEN-LAST:event_txtUsuario1KeyPressed
 

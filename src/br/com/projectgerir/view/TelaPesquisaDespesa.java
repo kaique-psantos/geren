@@ -54,7 +54,6 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         cbPesqFornecedor = new javax.swing.JComboBox<>();
         btnPesquisar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         cbPesqCategoria = new javax.swing.JComboBox<>();
         btnExcluir = new javax.swing.JButton();
@@ -89,17 +88,6 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 230, 130, 40));
-
-        btnEditar.setBorder(null);
-        btnEditar.setContentAreaFilled(false);
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEditar.setFocusable(false);
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 630, 100, 40));
 
         btnVoltar.setBorder(null);
         btnVoltar.setContentAreaFilled(false);
@@ -175,7 +163,7 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 1170, 340));
 
-        imgTelaPesquisaDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPesquisarDespesa.png"))); // NOI18N
+        imgTelaPesquisaDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/imgTelaPesquisarDespesaV2.png"))); // NOI18N
         jPanel1.add(imgTelaPesquisaDespesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -247,32 +235,6 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-//         if(tableDespesas.getSelectedRow() != -1){
-//            DespesaPesquisaModel despesa = new DespesaPesquisaModel();
-//            DespesaDAO dDao = new DespesaDAO();
-//            
-//            despesa.setId((int) tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 0));
-//            despesa.setDescricaoDespesa((String) tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 4));
-//            despesa.setDataPagamento((String) tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 5));
-//            String valorString = (String) tableDespesas.getValueAt(tableDespesas.getSelectedRow(), 6);
-//            
-//            TelaEditarDespesa telaEditar = new TelaEditarDespesa(
-//                    this, 
-//                    rootPaneCheckingEnabled,
-//                    despesa.getId(),
-//                    valorString, 
-//                    despesa.getDescricaoDespesa(), 
-//                    despesa.getDataPagamento()
-//            );
-//            telaEditar.setVisible(true);  
-//        }else{
-//             JOptionPane.showMessageDialog(this, "Selecione alguma despesa para editar");
-//         }
-        JOptionPane.showMessageDialog(this, "Esta funcionalidade ainda não está pronta\nAtualizações em breve ;)");
-        
-    }//GEN-LAST:event_btnEditarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -310,7 +272,6 @@ public class TelaPesquisaDespesa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltar;

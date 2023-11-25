@@ -15,11 +15,14 @@ import java.sql.PreparedStatement;
 public class UsuarioDAO {
 
     Connection con;
-
+    
+    
     public boolean autenticacaoUsuario(br.com.projectgerir.model.bean.Usuario usuario) {
         con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        
+        
         try {
             String sql = "SELECT * FROM usuario WHERE USER = ? AND SENHA = ?";
             stmt = con.prepareStatement(sql);
@@ -27,6 +30,7 @@ public class UsuarioDAO {
             stmt.setString(2, usuario.getSenha());
 
             rs = stmt.executeQuery();
+          
             return rs.next();
             
         } catch (SQLException erro) {
@@ -36,5 +40,6 @@ public class UsuarioDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
     }
+   
 
 }
