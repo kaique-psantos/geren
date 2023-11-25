@@ -209,7 +209,7 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel2.add(txtDataPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, 160, 37));
 
         imgTelaAddDespesa3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        imgTelaAddDespesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/TelaDespesaV3.png"))); // NOI18N
+        imgTelaAddDespesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projectgerir/images/TelaDespesaV4.png"))); // NOI18N
         jPanel2.add(imgTelaAddDespesa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1250, 750));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -217,9 +217,9 @@ public class TelaAddDespesa extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
