@@ -1,6 +1,8 @@
 # Projeto Gerir-Despesas
 Projeto Apresentado as disciplinas de Linguagem de Programação II, Projeto de Desenvolvimento Desktop e Engenharia de Software II no curso de Graduação em Sistemas de Informação do Centro Universitário do Rio São Francisco - UniRios, no 4º Período, turno noturno, como requisito parcial para aprovação semestral.
 
+<b>AVISO:</b> As credenciais de acesso ao banco de dados foram removidas por questões de segurança, sendo assim, a aplicação não pode funcionar corretamente. Para acessar uma versão totalmente funcional da aplicação entre em contato comigo pelos meios de comunicação listados ao final do arquivo.
+
 ## Apresentação
 A gestão eficaz de despesas é crucial para o sucesso de uma empresa, um fator muito importante nas tomadas de decisões. Pensando nisso, desenvolvemos o <b>Gerir</b>, uma aplicação desktop, idealizada para otimizar a gestão de despesas para empresas pequenas. Com ele é possível adicionar e filtrar despesas por Período, Categoria e Fornecedor. Sendo assim, pode se ter uma visão ampla de para onde estão indo os recursos da empresa.
 
