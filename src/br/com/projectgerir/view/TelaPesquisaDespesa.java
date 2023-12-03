@@ -1,8 +1,8 @@
 package br.com.projectgerir.view;
 
-import static br.com.projectgerir.controller.ComboBox.*;
-import static br.com.projectgerir.controller.PreencherTableDespesa.*;
-import static br.com.projectgerir.controller.PreencherValorTotal.*;
+import static br.com.projectgerir.funcionalidades.ComboBox.*;
+import static br.com.projectgerir.funcionalidades.PreencherTableDespesa.*;
+import static br.com.projectgerir.funcionalidades.PreencherValorTotal.*;
 
 import br.com.projectgerir.model.DAO.DespesaDAO;
 import static br.com.projectgerir.util.Utilitarios.converterData;

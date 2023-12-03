@@ -1,7 +1,7 @@
 package br.com.projectgerir.view;
 
 
-import static br.com.projectgerir.controller.PreencherDashboard.preencher;
+import static br.com.projectgerir.funcionalidades.PreencherDashboard.preencher;
 import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import java.sql.SQLException;
 import java.util.logging.Level;

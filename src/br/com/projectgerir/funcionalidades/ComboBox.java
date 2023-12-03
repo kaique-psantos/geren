@@ -1,4 +1,4 @@
-package br.com.projectgerir.controller;
+package br.com.projectgerir.funcionalidades;
 
 import br.com.projectgerir.model.DAO.BancoDAO;
 import br.com.projectgerir.model.DAO.CategoriaDAO;

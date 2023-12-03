@@ -1,7 +1,7 @@
 package br.com.projectgerir.view.popUp;
 
 import static br.com.projectgerir.view.TelaAddDespesa.cbBanco;
-import static br.com.projectgerir.controller.ComboBox.readBanco;
+import static br.com.projectgerir.funcionalidades.ComboBox.readBanco;
 import br.com.projectgerir.model.DAO.BancoDAO;
 import br.com.projectgerir.model.bean.Banco;
 import static br.com.projectgerir.util.Utilitarios.inserirIcon;

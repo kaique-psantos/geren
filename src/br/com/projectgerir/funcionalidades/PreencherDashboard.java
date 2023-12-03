@@ -1,4 +1,4 @@
-package br.com.projectgerir.controller;
+package br.com.projectgerir.funcionalidades;
 
 import br.com.projectgerir.connection.ConnectionFactory;
 import br.com.projectgerir.view.TelaPrincipal;

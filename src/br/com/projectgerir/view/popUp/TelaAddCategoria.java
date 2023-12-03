@@ -1,6 +1,6 @@
 package br.com.projectgerir.view.popUp;
 
-import static br.com.projectgerir.controller.ComboBox.readCategoria;
+import static br.com.projectgerir.funcionalidades.ComboBox.readCategoria;
 import br.com.projectgerir.model.DAO.CategoriaDAO;
 import br.com.projectgerir.model.bean.Categoria;
 import static br.com.projectgerir.util.Utilitarios.inserirIcon;

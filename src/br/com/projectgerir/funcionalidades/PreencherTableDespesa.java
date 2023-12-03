@@ -1,4 +1,4 @@
-package br.com.projectgerir.controller;
+package br.com.projectgerir.funcionalidades;
 
 import br.com.projectgerir.model.DAO.DespesaDAO;
 import br.com.projectgerir.model.bean.DespesaPesquisaModel;

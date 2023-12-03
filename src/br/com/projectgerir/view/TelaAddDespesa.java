@@ -9,9 +9,9 @@ import br.com.projectgerir.model.bean.Banco;
 import br.com.projectgerir.model.bean.Categoria;
 import br.com.projectgerir.model.bean.Despesa;
 import br.com.projectgerir.model.bean.Fornecedor;
-import static br.com.projectgerir.controller.ComboBox.readBanco;
-import static br.com.projectgerir.controller.ComboBox.readCategoria;
-import static br.com.projectgerir.controller.ComboBox.readFornecedor;
+import static br.com.projectgerir.funcionalidades.ComboBox.readBanco;
+import static br.com.projectgerir.funcionalidades.ComboBox.readCategoria;
+import static br.com.projectgerir.funcionalidades.ComboBox.readFornecedor;
 import static br.com.projectgerir.util.Utilitarios.converterData;
 import static br.com.projectgerir.util.Utilitarios.inserirIcon;
 import java.sql.SQLException;
@@ -87,47 +87,22 @@ public class TelaAddDespesa extends javax.swing.JFrame {
 
         cbFornecedor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbFornecedor.setBorder(null);
-        cbFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbFornecedorActionPerformed(evt);
-            }
-        });
         jPanel2.add(cbFornecedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 490, 39));
 
         cbBanco.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbBanco.setBorder(null);
-        cbBanco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbBancoActionPerformed(evt);
-            }
-        });
         jPanel2.add(cbBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 180, 200, 39));
 
         cbCategoria.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         cbCategoria.setBorder(null);
-        cbCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbCategoriaActionPerformed(evt);
-            }
-        });
         jPanel2.add(cbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 180, 210, 39));
 
         txtDescricao.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtDescricao.setBorder(null);
-        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescricaoActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 590, 38));
 
         txtValor.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtValor.setBorder(null);
-        txtValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorActionPerformed(evt);
-            }
-        });
         jPanel2.add(txtValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 140, 37));
 
         btnAddFornecedor.setBorder(null);
@@ -241,27 +216,6 @@ public class TelaAddDespesa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbFornecedorActionPerformed
-
-    private void cbBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBancoActionPerformed
-
-    
-    }//GEN-LAST:event_cbBancoActionPerformed
-
-    private void cbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbCategoriaActionPerformed
-
-    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescricaoActionPerformed
-
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         TelaPrincipal telaPrincipal = new TelaPrincipal();

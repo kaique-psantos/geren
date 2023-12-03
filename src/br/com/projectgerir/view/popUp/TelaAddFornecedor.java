@@ -1,6 +1,6 @@
 package br.com.projectgerir.view.popUp;
 
-import static br.com.projectgerir.controller.ComboBox.readFornecedor;
+import static br.com.projectgerir.funcionalidades.ComboBox.readFornecedor;
 import br.com.projectgerir.model.DAO.FornecedorDAO;
 import br.com.projectgerir.model.bean.Fornecedor;
 import static br.com.projectgerir.util.Utilitarios.inserirIcon;
